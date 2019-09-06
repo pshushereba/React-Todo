@@ -10,12 +10,12 @@ class TodoForm extends Component {
 
     handleChange = (event) => {
         this.setState({[event.target.name]: event.target.value})
-        console.log(this.state)
     }
+    
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addItem(this.state.taskItem);
+        this.state.taskItem !== "" && this.props.addItem(this.state.taskItem);
         this.setState({
             taskItem: ''
         });
@@ -32,7 +32,9 @@ class TodoForm extends Component {
                         value={this.state.taskItem}
                         onChange={(e) => this.handleChange(e)} />
                     <button>Add ToDo</button>
-                    <button>Clear Completed</button>
+                    <button onClick={(e) => {
+                        e.preventDefault()
+                        this.props.clearCompleted()}}>Clear Completed</button>
                 </form>
             </>
         )

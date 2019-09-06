@@ -5,11 +5,15 @@ import React from 'react';
 import TodoForm from './components/TodoComponents/TodoForm.js';
 import TodoList from './components/TodoComponents/TodoList'
 
+// Import Stylesheet
+
+import './components/TodoComponents/Todo.css';
+
 const todos = [
   {
     task: 'Organize Garage',
     id: 1528817077286,
-    completed: false
+    completed: true
   },
   {
     task: 'Bake Cookies',
@@ -35,19 +39,43 @@ class App extends React.Component {
       id: Date.now(),
       completed: false
     }
-    console.log("In addItem:", newItem)
     this.setState({
       todos: [...this.state.todos, newItem]
     })
   }
 
+  toggleItem = (itemID) => {
+    this.setState({
+      todos: this.state.todos.map((item) => {
+        if (item.id === itemID) {
+          return {...item, completed: !item.completed};
+        } else {
+            return item;
+        }
+      })
+    });
+  }
+
+  clearCompleted = () => {
+    this.setState({
+      todos: this.state.todos.filter((task) => {
+        return !task.completed;
+      })
+    });
+  }
+
   render() {
     return (
       <div>
-        <h2>Welcome to your Todo App!</h2>
-        <TodoForm
-          addItem={this.addItem} />
-        <TodoList todos={this.state.todos} />
+        <div className="listContainer">
+          <h2>Welcome to your Todo App!</h2>
+          <TodoForm
+            addItem={this.addItem}
+            clearCompleted={this.clearCompleted} />
+          <TodoList
+            todos={this.state.todos}
+            toggleItem={this.toggleItem} />
+        </div>
       </div>
     );
   }

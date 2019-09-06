@@ -1,0 +1,38 @@
+.listContainer {
+    display: flex;
+    width: 400px;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.itemWrapper {
+    display: flex;
+    width: 400px;
+    justify-content: center;
+    border: 2px solid black;
+}
+
+h2 {
+    width: 100%
+}
+
+form {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    height: 30px;
+}
+
+button {
+    width: 50%;
+    height: 50px;
+}
+
+.taskDone {
+    text-decoration: line-through;
+}
